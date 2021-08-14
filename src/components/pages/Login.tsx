@@ -3,7 +3,7 @@ import { Input, Flex, Box, Heading, Divider, Link, Stack } from '@chakra-ui/reac
 
 import { PrimaryButton } from '../atoms/button/PrimaryButton';
 import { useAuth } from '../../hooks/useAuth';
-import { userInfoType } from '../../types/api/userInfo';
+import { userInfoType } from '../../types/api/userInfoType';
 
 
 export const Login: VFC = memo(() => {

@@ -20,7 +20,7 @@ export const MenuDrawer: VFC<Props> = memo((props) => {
         <DrawerBody p={0} bg="gray.100" >
           <Button w="100%" _focus={{outline: "none"}} onClick={onClickHome}>TOP</Button>
           <Button w="100%" _focus={{outline: "none"}} onClick={onClickArchive}>アーカイブ</Button>
-          <Button w="100%" _focus={{outline: "none"}} onClick={onClickSignOut}>サインアウト</Button>
+          <Button w="100%" _focus={{outline: "none"}} onClick={onClickSignOut}>ログアウト</Button>
         </DrawerBody>
       </DrawerContent>
     </DrawerOverlay>

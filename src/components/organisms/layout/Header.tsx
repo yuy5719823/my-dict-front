@@ -1,23 +1,26 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { VFC, memo, useCallback } from 'react';
 import { Flex, Heading, Link, Box, useDisclosure } from '@chakra-ui/react';
+import { useHistory } from 'react-router';
+
 
 import { MenuIconButoon } from '../../atoms/button/MenuIconButton';
 import { MenuDrawer } from '../../molecules/MenuDrawer';
-import { useHistory } from 'react-router';
+import { useLogout } from '../../../hooks/useLogout';
 
 
 export const Header: VFC = memo( () => {
 
   const history = useHistory();
   const { isOpen, onOpen, onClose} = useDisclosure();
+  const { logout } = useLogout();
 
   const onClickHome = useCallback( () => history.push("/home"), []);
   const onClickUserInfo = useCallback( () => history.push("/user"), []);
   const onClickArchive = useCallback( () => history.push("/archive"), []);
   const onClickSignOut = useCallback( () =>  {
-  alert("サインアウトしました")
-  history.push("/")
+    logout();
+    history.push("/")
   }, []);
 
   return(
