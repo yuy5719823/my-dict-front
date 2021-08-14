@@ -16,7 +16,7 @@ export const Header: VFC = memo( () => {
   const onClickUserInfo = useCallback( () => history.push("/user"), []);
   const onClickArchive = useCallback( () => history.push("/archive"), []);
   const onClickSignOut = useCallback( () =>  {
-  alert("サインアウト")
+  alert("サインアウトしました")
   history.push("/")
   }, []);
 
