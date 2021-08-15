@@ -12,8 +12,9 @@ export const useLogout = () => {
     }})
     .then( () => {
       //Cookieの値を削除
-      Cookies.remove("client");
       Cookies.remove("accessToken");
+      Cookies.remove("client");
+      Cookies.remove("expiry");
       Cookies.remove("uid");
       alert("ログアウトしました");
     } )
