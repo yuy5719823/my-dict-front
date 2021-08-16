@@ -5,11 +5,13 @@ import Cookies from 'js-cookie';
 import { signInUrl } from '../urls';
 import { useHistory } from 'react-router-dom';
 import { userInfoType } from '../types/api/userInfoType';
+import { useMessage } from './useMessage';
 
 export const useAuth = () => {
 
   const history = useHistory();
   const [ loading, setLoading ] = useState(false);
+  const { showMessage } = useMessage();
 
   const login = useCallback((userInfo: userInfoType ) => {
     setLoading(true);
@@ -22,12 +24,12 @@ export const useAuth = () => {
       Cookies.set("expiry", res.headers.expiry);
       Cookies.set("uid", res.headers.uid);
       history.push("/home");
-      alert("ログインしました");
+      showMessage({title: "ログインしました", status: "success"})
     }).catch( () => {
       setLoading(false);
-      alert("ログインに失敗しました");
+      showMessage({title: "ログインに失敗しました", status: "warning"})
     })
-  }, [history]);
+  }, [history, showMessage]);
 
   return { login, loading }
 

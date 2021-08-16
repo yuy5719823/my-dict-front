@@ -1,35 +1,29 @@
-import { VFC, memo } from 'react';
-import axios from 'axios';
-import { useEffect } from 'react';
-import Cookies from 'js-cookie';
+import { VFC, memo, useEffect } from 'react';
+import { Spinner, Center } from '@chakra-ui/react';
 
-import { wordType } from '../../types/api/wordType';
-import { getWordsUrl } from '../../urls/index';
+
+
+import { useWordList } from '../../hooks/useWordList';
 
 export const Home: VFC = memo(() => {
 
+  const { fetchWordList, loading } = useWordList();
+
 
   useEffect( () =>{
-    axios.get<wordType>(getWordsUrl, {
-      params: {
-        "access-token": Cookies.get("accessToken"),
-        client: Cookies.get("client"),
-        expiry: Cookies.get("expiry"),
-        uid: Cookies.get("uid"),
-      }
-    }).then( (res) => {
-      console.log(res);
-      alert("データの取得に成功しました");
-    })
-    .catch( () =>
-      alert("データの取得に失敗しました")
-    );
-  },[] );
-
-
+    fetchWordList();
+  },[fetchWordList] );
 
   return(
-    <p>ホームページです</p>
+    <>
+      {loading === true ? (
+        <Center h="100vh">
+          <Spinner />
+        </Center>
+      ) : (
+        <div></div>
+      )}
+      </>
   );
 
 });
