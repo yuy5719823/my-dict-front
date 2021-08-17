@@ -9,7 +9,7 @@ import { userInfoType } from '../../types/api/userInfoType';
 export const Login: VFC = memo(() => {
 
   const { login, loading } = useAuth();
-  const [userInfo, setUserInfo] =useState<userInfoType>({ email: "test@example.com", password: "password" });
+  const [userInfo, setUserInfo] =useState<userInfoType>({ email: "test0@example.com", password: "password" });
 
   const onClickLogin = () => login(userInfo);
   const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => setUserInfo({...userInfo, email: event.target.value});
