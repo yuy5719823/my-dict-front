@@ -1,5 +1,5 @@
 import { VFC, memo, useEffect, useCallback } from 'react';
-import { Spinner, Center, Wrap, WrapItem, useDisclosure, Grid, GridItem, Button, Text } from '@chakra-ui/react';
+import { Spinner, Center, Wrap, WrapItem, useDisclosure, Grid, GridItem } from '@chakra-ui/react';
 
 import { useWordList } from '../../hooks/useWordList';
 import { WordCard } from '../organisms/word/WordCard';
