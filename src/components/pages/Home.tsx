@@ -21,12 +21,17 @@ export const Home: VFC = memo(() => {
         </Center>
       ) : (
         <Wrap p={{base: 4, md: 10 }} justify={{base: "center", md: "left"}} direction="column" spacing="30px" >
+          {wordList.length === 0 ? (
+            <WordCard title="タイトル" wordMemo="メモ" />
+          ) : (
+            <>
             {wordList.map( (word) => (
               <WrapItem key={word.id}>
                 <WordCard title={word.word} wordMemo={word.memo} />
               </WrapItem>
             ))}
-            <WordCard title="タイトル" wordMemo="メモ" />
+            </>
+          ) }
         </Wrap>
       )}
       </>
