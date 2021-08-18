@@ -27,7 +27,7 @@ export const useAuth = () => {
       showMessage({title: "ログインしました", status: "success"})
     }).catch( () => {
       setLoading(false);
-      showMessage({title: "ログインに失敗しました", status: "warning"})
+      showMessage({title: "ログインに失敗しました", status: "error"})
     })
   }, [history, showMessage]);
 
