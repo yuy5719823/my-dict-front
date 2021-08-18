@@ -1,9 +1,10 @@
 import { VFC, memo, useState, ChangeEvent } from 'react';
-import { Input, Flex, Box, Heading, Divider, Stack, Modal, ModalOverlay, ModalContent, useDisclosure, ModalHeader, Button, ModalCloseButton, ModalBody, FormControl, FormLabel } from '@chakra-ui/react';
+import { Input, Flex, Box, Heading, Divider, Stack, useDisclosure,  Button } from '@chakra-ui/react';
 
 import { PrimaryButton } from '../atoms/button/PrimaryButton';
 import { useAuth } from '../../hooks/useAuth';
 import { userInfoType } from '../../types/api/userInfoType';
+import { SignUpModal } from '../organisms/user/SignUpModal';
 
 
 export const Login: VFC = memo(() => {
@@ -37,35 +38,7 @@ export const Login: VFC = memo(() => {
         </Button>
       </Box>
       </Flex>
-
-      <Modal isOpen={isOpen} onClose={onClose} isCentered autoFocus={false} motionPreset="slideInBottom">
-        <ModalOverlay />
-        <ModalContent p={6}>
-          <ModalHeader as="h2" fontWeight="medium" textAlign="center">アカウントの作成</ModalHeader>
-          <ModalCloseButton _hover={{opacity: "none"}} />
-          <ModalBody pt={6} flexDirection="column">
-            <Stack spacing={4}>
-              <FormControl>
-                <FormLabel>ユーザーネーム</FormLabel>
-                <Input placeholder="ユーザーネーム" />
-              </FormControl>
-              <FormControl id="email">
-                <FormLabel>メールアドレス</FormLabel>
-                <Input type="email" placeholder="sample@example.com" />
-              </FormControl>
-              <FormControl id="password">
-                <FormLabel>パスワード</FormLabel>
-                <Input type="password" placeholder="パスワード" />
-              </FormControl>
-              <FormControl id="password">
-                <FormLabel>パスワード(確認)</FormLabel>
-                <Input type="password" placeholder="ユーザーネーム" />
-              </FormControl>
-              <Button　w="100%">新規登録</Button>
-            </Stack>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+      <SignUpModal isOpen={isOpen} onClose={onClose} />
     </>
   );
 
