@@ -1,5 +1,5 @@
 import { VFC, memo, useEffect, useCallback } from 'react';
-import { Spinner, Center, Wrap, WrapItem, useDisclosure, Grid, GridItem } from '@chakra-ui/react';
+import { Spinner, Center, Wrap, WrapItem, useDisclosure, Grid, GridItem, Box } from '@chakra-ui/react';
 
 import { useWordList } from '../../hooks/useWordList';
 import { WordCard } from '../organisms/word/WordCard';
@@ -33,8 +33,10 @@ export const Home: VFC = memo(() => {
       ) : (
         <Wrap p={{base: 4, md: 8 }} justify="center" direction="column" spacing="30px" >
           {wordList.length === 0 ? (
-            <WrapItem>
-              <WordCard id={0} title="タイトル" wordMemo="メモ" onClick={onClickWord} />
+            <WrapItem  h="90vh">
+              <Box m="auto">
+                <p>単語が登録されていません</p>
+              </Box>
             </WrapItem>
           ) : (
             <>
