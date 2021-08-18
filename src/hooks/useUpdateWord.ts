@@ -22,7 +22,7 @@ export const useUpdateWord = () => {
       data: { word: {
         word: wordData.word,
         memo: wordData.memo,
-        archive: true,
+        archive: wordData.archive,
       }},
       params: {
         "access-token": Cookies.get("accessToken"),

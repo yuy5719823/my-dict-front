@@ -22,7 +22,7 @@ export const WordDetailModal: VFC<Props> = memo( (props) => {
 
   const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => setTitle(event.target.value);
   const onChangeMemo = (event: ChangeEvent<HTMLTextAreaElement>) => setMemo(event.target.value);
-  const onClickArchive = () => setArchive(!archive);
+  const onChangeArchive = (event: ChangeEvent<HTMLInputElement>) => setArchive(!archive);
   const onClickUpdate = () => {
     updateWord({id: word!.id , wordData: {word: title, memo: memo, archive: archive}});
     onClose();
@@ -41,13 +41,13 @@ export const WordDetailModal: VFC<Props> = memo( (props) => {
         <ModalHeader color="gray.400">●</ModalHeader>
         <ModalBody mx={12}>
           <Divider my={4} />
-          <Input value={title} placeholder="タイトル" onChange={onChangeTitle} select />
+          <Input value={title} placeholder="タイトル" onChange={onChangeTitle} />
           <Divider my={4} />
           <Textarea h="10em" value={memo} placeholder="メモ" onChange={onChangeMemo} />
           <Divider my={4} />
         </ModalBody>
         <ModalFooter>
-          <Checkbox onClick={onClickArchive} defaultIsChecked={word?.archive}>
+          <Checkbox onChange={onChangeArchive} defaultIsChecked={word?.archive}>
             非表示にする
           </Checkbox>
           <Spacer />
