@@ -14,8 +14,6 @@ export const WordDetailModal: VFC<Props> = memo( (props) => {
 
   const { isOpen, onClose, word } = props;
 
-  console.log(word);
-
   const [ title, setTitle ] = useState<string>("");
   const [ memo, setMemo ] = useState<string>("");
   const [ archive, setArchive ] = useState<boolean>(false);

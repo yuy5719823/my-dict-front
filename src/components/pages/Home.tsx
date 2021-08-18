@@ -23,15 +23,15 @@ export const Home: VFC = memo(() => {
   return(
     <>
     <Grid
-      templateColumns={{base: "repeat(1, 1fr)" ,md: "repeat(2, 1fr)"}}
+      templateColumns={{base: "repeat(1, 1fr)" ,md: "repeat(7, 1fr)"}}
     >
-      <GridItem colSpan={1}>
+      <GridItem colSpan={5}>
       {loading === true ? (
         <Center h="100vh">
           <Spinner />
         </Center>
       ) : (
-        <Wrap p={{base: 4, md: 10 }} mx={{base:0, md:20}} justify="center" direction="column" spacing="30px" >
+        <Wrap p={{base: 4, md: 8 }} justify="center" direction="column" spacing="30px" >
           {wordList.length === 0 ? (
             <WrapItem>
               <WordCard id={0} title="タイトル" wordMemo="メモ" onClick={onClickWord} />
@@ -48,7 +48,7 @@ export const Home: VFC = memo(() => {
         </Wrap>
       )}
       </GridItem>
-      <GridItem colSpan={1} bg="papayawhip">
+        <GridItem colSpan={2} bg="papayawhip" h={{base: 0, md: "100vh"}}>
       </GridItem>
     </Grid>
       <WordDetailModal isOpen={isOpen} onClose={onClose} word={selectedWord} />
