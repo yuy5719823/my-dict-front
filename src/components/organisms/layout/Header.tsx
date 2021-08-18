@@ -15,9 +15,15 @@ export const Header: VFC = memo( () => {
   const { isOpen, onOpen, onClose} = useDisclosure();
   const { logout } = useLogout();
 
-  const onClickHome = useCallback( () => history.push("/home"), []);
+  const onClickHome = useCallback( () => {
+    history.push("/home")
+    onClose();
+  }, []);
   const onClickUserInfo = useCallback( () => history.push("/user"), []);
-  const onClickArchive = useCallback( () => history.push("/archive"), []);
+  const onClickArchive = useCallback( () => {
+    history.push("/archive");
+    onClose();
+  }, []);
   const onClickSignOut = useCallback( () =>  {
     logout();
     history.push("/")
@@ -34,7 +40,7 @@ export const Header: VFC = memo( () => {
           <Box pr={3}>
             <Link onClick={onClickArchive}>アーカイブ</Link>
           </Box>
-          <Link onClick={onClickSignOut}>ログアウト</Link>
+          <Link onClick={onClickSignOut}>サインアウト</Link>
         </Flex>
         <MenuIconButoon onOpen={onOpen} />
       </Flex>
