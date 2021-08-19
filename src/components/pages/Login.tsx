@@ -9,16 +9,16 @@ import { SignUpModal } from '../organisms/user/SignUpModal';
 
 export const Login: VFC = memo(() => {
 
+  //新規登録関連
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  //ログイン関連
   const { login, loading } = useAuth();
-  const [userInfo, setUserInfo] =useState<userInfoType>({ email: "test0@example.com", password: "password" });
+  const [userInfo, setUserInfo] = useState<userInfoType>({ email: "test0@example.com", password: "password" });
 
   const onClickLogin = () => login(userInfo);
   const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => setUserInfo({...userInfo, email: event.target.value});
   const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => setUserInfo({...userInfo, password: event.target.value});
-
-  const onClickSignUp = () => alert("新規登録");
 
   return(
     <>
