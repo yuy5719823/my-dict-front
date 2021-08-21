@@ -17,9 +17,6 @@ export const useAddWord = () => {
 
     const { title, memo } = props;
 
-    console.log(title);
-    console.log(memo);
-
     axios.post( postWordUrl, {word: {word: title, memo: memo} }, {
       params: {
         "access-token": Cookies.get("accessToken"),
