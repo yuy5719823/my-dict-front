@@ -27,8 +27,7 @@ export const useArchiveWordList = () => {
       }
     }).then( (res) => {
       setArchiveWordList(res.data);
-      // console.log(res.data)
-      showMessage({title: "データの取得に成功しました", status: "success"});
+      // showMessage({title: "データの取得に成功しました", status: "success"});
     })
     .catch( () =>{
       showMessage({title: "データの取得に失敗しました", status: "error"});
