@@ -1,10 +1,10 @@
 import { VFC, memo, useEffect, useCallback } from 'react';
-import { Spinner, Center, Wrap, WrapItem, useDisclosure, Grid, GridItem, Box } from '@chakra-ui/react';
+import {  useDisclosure, Grid, GridItem } from '@chakra-ui/react';
 
 import { useWordList } from '../../hooks/useWordList';
-import { WordCard } from '../organisms/word/WordCard';
 import { WordDetailModal } from '../organisms/word/WordDetailModal';
 import { useSetWord } from '../../hooks/useSelectWord';
+import { WordCardList } from '../templates/WordCardList';
 
 export const Home: VFC = memo(() => {
 
@@ -26,31 +26,9 @@ export const Home: VFC = memo(() => {
       templateColumns={{base: "repeat(1, 1fr)" ,md: "repeat(7, 1fr)"}}
     >
       <GridItem colSpan={5}>
-      {loading === true ? (
-        <Center h="100vh">
-          <Spinner />
-        </Center>
-      ) : (
-        <Wrap p={{base: 4, md: 8 }} justify="center" direction="column" spacing="30px" >
-          {wordList.length === 0 ? (
-            <WrapItem  h="90vh">
-              <Box m="auto">
-                <p>単語が登録されていません</p>
-              </Box>
-            </WrapItem>
-          ) : (
-            <>
-            {wordList.map( (word) => (
-              <WrapItem key={word.id}>
-                <WordCard id={word.id} title={word.word} wordMemo={word.memo} onClick={onClickWord} />
-              </WrapItem>
-            ))}
-            </>
-          ) }
-        </Wrap>
-      )}
+        <WordCardList loading={loading} wordList={wordList} onClickWord={onClickWord} />
       </GridItem>
-        <GridItem colSpan={2} bg="papayawhip" h={{base: 0, md: "100vh"}}>
+      <GridItem colSpan={2} bg="papayawhip" h={{base: 0, md: "100vh"}}>
       </GridItem>
     </Grid>
       <WordDetailModal isOpen={isOpen} onClose={onClose} word={selectedWord} />
