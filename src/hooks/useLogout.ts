@@ -20,6 +20,7 @@ export const useLogout = () => {
       Cookies.remove("client");
       Cookies.remove("expiry");
       Cookies.remove("uid");
+      Cookies.remove("uname");
       showMessage({title: "ログアウトしました", status: "success"})
     } )
     .catch( () => 

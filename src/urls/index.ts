@@ -8,3 +8,4 @@ export const signUpUrl = `${BASE_URL}/api/auth`;
 export const getArchiveWordUrl = `${BASE_URL}/api/words/archive`;
 export const postWordUrl = `${BASE_URL}/api/words`;
 export const deleteWordUrl = (id: number) => `${BASE_URL}/api/words/${id}`;
+export const updateUserInfoUrl = `${BASE_URL}/api/auth`;

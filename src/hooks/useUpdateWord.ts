@@ -24,7 +24,7 @@ export const useUpdateWord = () => {
         memo: wordData.memo,
         archive: wordData.archive,
       }},
-      params: {
+      headers: {
         "access-token": Cookies.get("accessToken"),
         client: Cookies.get("client"),
         expiry: Cookies.get("expiry"),

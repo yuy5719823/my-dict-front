@@ -2,7 +2,7 @@
 import { VFC, memo, useCallback } from 'react';
 import { Flex, Heading, Link, Box, useDisclosure } from '@chakra-ui/react';
 import { useHistory } from 'react-router';
-
+import Cookies from 'js-cookie';
 
 import { MenuIconButoon } from '../../atoms/button/MenuIconButton';
 import { MenuDrawer } from '../../molecules/MenuDrawer';
@@ -32,7 +32,7 @@ export const Header: VFC = memo( () => {
   return(
     <>
       <Flex as="nav" bg="teal.500" color="gray.50" align="center" justify="space-between" padding={{ base: 2, md: 4 }}>
-        <Link to="/user" fontSize={{base: "sm", md: "md"}} onClick={onClickUserInfo}>ユーザー</Link>
+        <Link to="/user" fontSize={{base: "sm", md: "md"}} onClick={onClickUserInfo}>{Cookies.get("uname")}</Link>
         <Flex as="a" _hover={{cursor: "pointer"}}　onClick={onClickHome}>
           <Heading as="h1" fontWeight="200">MyDictionary</Heading>
         </Flex>

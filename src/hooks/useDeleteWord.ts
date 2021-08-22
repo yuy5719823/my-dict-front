@@ -12,7 +12,7 @@ export const useDeleteWord = () => {
 
   const deleteWord = useCallback((id: number) => {
     axios.delete(deleteWordUrl(id),{
-    params: {
+    headers: {
       "access-token": Cookies.get("accessToken"),
       client: Cookies.get("client"),
       expiry: Cookies.get("expiry"),

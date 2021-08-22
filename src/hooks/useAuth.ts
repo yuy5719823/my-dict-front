@@ -23,6 +23,7 @@ export const useAuth = () => {
       Cookies.set("client", res.headers.client );
       Cookies.set("expiry", res.headers.expiry);
       Cookies.set("uid", res.headers.uid);
+      Cookies.set("uname", res.data.data.name);
       history.push("/home");
       showMessage({title: "ログインしました", status: "success"})
     }).catch( () => {

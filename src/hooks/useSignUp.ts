@@ -23,12 +23,13 @@ export const useSignUp = () => {
 
     const { userName, email, password, passwordConfirmation } = props;
 
-    axios.post(signUpUrl, {userName, email, password, passwordConfirmation})
+    axios.post(signUpUrl, {name: userName, email, password, "password_confirmation":passwordConfirmation})
     .then( (res) => {
       Cookies.set("accessToken", res.headers["access-token"]);
       Cookies.set("client", res.headers.client );
       Cookies.set("expiry", res.headers.expiry);
       Cookies.set("uid", res.headers.uid);
+      Cookies.set("uname", res.data.data.name);
       history.push("/home");
       showMessage({title: "ユーザー登録完了", status: "success"});
     })

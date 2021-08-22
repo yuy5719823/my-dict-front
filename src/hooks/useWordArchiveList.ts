@@ -19,7 +19,7 @@ export const useArchiveWordList = () => {
   const fetchWordList = useCallback(() => {
     setLoading(true);
     axios.get<Array<wordType>>(getArchiveWordUrl, {
-      params: {
+      headers: {
         "access-token": Cookies.get("accessToken"),
         client: Cookies.get("client"),
         expiry: Cookies.get("expiry"),

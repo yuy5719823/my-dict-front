@@ -19,7 +19,7 @@ export const useWordList = () => {
   const fetchWordList = useCallback(() => {
     setLoading(true);
     axios.get<Array<wordType>>(getWordsUrl, {
-      params: {
+      headers: {
         "access-token": Cookies.get("accessToken"),
         client: Cookies.get("client"),
         expiry: Cookies.get("expiry"),
