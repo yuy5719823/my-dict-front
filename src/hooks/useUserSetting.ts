@@ -2,7 +2,9 @@ import { useCallback } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-import { updateUserInfoUrl } from '../urls/index';
+import { deleteUserUrl, updateUserInfoUrl } from '../urls/index';
+import { useMessage } from './useMessage';
+import { useHistory } from 'react-router-dom';
 
 type UserInfo = {
   userName: string;
@@ -13,12 +15,15 @@ type UserInfo = {
 
 export const useUserSetting = () => {
 
+  const { showMessage } = useMessage();
+  const history = useHistory();
+
   const updateUserInfo = useCallback( (userInfo: UserInfo) => {
 
     const { userName, email, password, passwordConfirmation} = userInfo;
 
     axios.put(updateUserInfoUrl,
-      {name: userName, email},
+      {name: userName, email, password, password_confirmation: passwordConfirmation},
       {
       headers: {
         "access-token": Cookies.get("accessToken"),
@@ -30,14 +35,28 @@ export const useUserSetting = () => {
       .then( (res) => {
         console.log(res)
         Cookies.set("uname", res.data.data.name);
-        alert("更新成功");
+        showMessage({title: "更新しました", status: "success"})
       })
       .catch( () => {
-        alert("更新失敗");
+        showMessage({title: "更新に失敗しました", status: "error"})
       })
-  }, [])
+  }, [showMessage])
 
-  const deleteUser = useCallback( () => {}, [])
+  const deleteUser = useCallback( () => {
+    axios.delete(deleteUserUrl, {
+      headers: {
+        "access-token": Cookies.get("accessToken"),
+        client: Cookies.get("client"),
+        expiry: Cookies.get("expiry"),
+        uid: Cookies.get("uid"),
+        }
+      })
+      .then( () => {
+        showMessage({title: "ユーザーを削除しました", status: "success"})
+        history.push("/");
+      })
+      .catch(() => showMessage({title: "ユーザーの削除に失敗しました", status: "error"}))
+  }, [showMessage,history])
 
   return { updateUserInfo, deleteUser }
 }
