@@ -26,7 +26,7 @@ export const Archive: VFC = memo(() => {
   return(
     <>
       <WordCardList loading={loading} wordList={archiveWordList} onClickWord={onClickWord} />
-      <WordDetailModal isOpen={isOpen} onClose={onClose} word={selectedWord} />
+      <WordDetailModal mode="archive" isOpen={isOpen} onClose={onClose} word={selectedWord} />
     </>
     );
 

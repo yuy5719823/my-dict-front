@@ -40,7 +40,7 @@ export const Home: VFC = memo(() => {
       </GridItem>
       <AddWordIcon onClick={onClickAddWord} />
     </Grid>
-      <WordDetailModal isOpen={isOpenWord} onClose={onCloseWord} word={selectedWord} />
+      <WordDetailModal mode="default" isOpen={isOpenWord} onClose={onCloseWord} word={selectedWord} />
       <AddWordModal isOpen={isOpenAdd} onClose={onCloseAdd} />
     </>
   );

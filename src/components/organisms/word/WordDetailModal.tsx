@@ -3,22 +3,25 @@ import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, Divider, Inp
 import { wordType } from '../../../types/api/wordType';
 import { useEffect } from 'react';
 import { useUpdateWord } from '../../../hooks/useUpdateWord';
+import { useDeleteWord } from '../../../hooks/useDeleteWord';
 
 type Props = {
   isOpen: boolean;
   onClose: () => void;
   word: wordType | null;
+  mode: "default" | "archive";
 }
 
 export const WordDetailModal: VFC<Props> = memo( (props) => {
 
-  const { isOpen, onClose, word } = props;
+  const { isOpen, onClose, word , mode } = props;
 
   const [ title, setTitle ] = useState<string>("");
   const [ memo, setMemo ] = useState<string>("");
   const [ archive, setArchive ] = useState<boolean>(false);
 
   const { updateWord } = useUpdateWord();
+  const { deleteWord } = useDeleteWord();
 
   const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => setTitle(event.target.value);
   const onChangeMemo = (event: ChangeEvent<HTMLTextAreaElement>) => setMemo(event.target.value);
@@ -26,6 +29,9 @@ export const WordDetailModal: VFC<Props> = memo( (props) => {
   const onClickUpdate = () => {
     updateWord({id: word!.id , wordData: {word: title, memo: memo, archive: archive}});
     onClose();
+  }
+  const onClickDelete = () => {
+    deleteWord(word!.id);
   }
 
   useEffect(() => {
@@ -51,7 +57,9 @@ export const WordDetailModal: VFC<Props> = memo( (props) => {
             非表示にする
           </Checkbox>
           <Spacer />
-          <Button onClick={onClickUpdate}>
+          { mode === "archive" && 
+          <Button mr={6} fontWeight="light" onClick={onClickDelete}>削除</Button> }
+          <Button onClick={onClickUpdate} fontWeight="light">
             更新
           </Button>
         </ModalFooter>
