@@ -10,11 +10,13 @@ type Props = {
   onClose: () => void;
   word: wordType | null;
   mode: "default" | "archive";
+  update: boolean;
+  setUpdate: (bool: boolean) => void;
 }
 
 export const WordDetailModal: VFC<Props> = memo( (props) => {
 
-  const { isOpen, onClose, word , mode } = props;
+  const { isOpen, onClose, word , mode, update, setUpdate } = props;
 
   const [ title, setTitle ] = useState<string>("");
   const [ memo, setMemo ] = useState<string>("");
@@ -28,10 +30,13 @@ export const WordDetailModal: VFC<Props> = memo( (props) => {
   const onChangeArchive = (event: ChangeEvent<HTMLInputElement>) => setArchive(!archive);
   const onClickUpdate = () => {
     updateWord({id: word!.id , wordData: {word: title, memo: memo, archive: archive}});
+    setUpdate(update?false:true);
     onClose();
   }
   const onClickDelete = () => {
     deleteWord(word!.id);
+    setUpdate(update?false:true);
+    onClose();
   }
 
   useEffect(() => {

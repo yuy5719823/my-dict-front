@@ -1,4 +1,4 @@
-import { VFC, memo, useEffect, useCallback } from 'react';
+import { VFC, memo, useEffect, useCallback, useState } from 'react';
 import { useDisclosure, Grid, GridItem, Box, Button, Flex } from '@chakra-ui/react';
 
 import { useWordList } from '../../hooks/useWordList';
@@ -16,6 +16,9 @@ export const Home: VFC = memo(() => {
 
   const { isOpen: isOpenAdd, onOpen: onOpenAdd, onClose: onCloseAdd } = useDisclosure();
 
+  // 強制的に再レンダリング
+  const [ update, setUpdate ] = useState<boolean>(false);
+
   const onClickWord = useCallback( (id: number) => {
     setWord({id, wordList})
     onOpenWord();
@@ -26,7 +29,7 @@ export const Home: VFC = memo(() => {
   }, [onOpenAdd])
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect( () => fetchWordList() ,[] );
+  useEffect( () => fetchWordList() ,[update] );
 
   return(
     <>
@@ -46,8 +49,8 @@ export const Home: VFC = memo(() => {
       </GridItem>
       <AddWordIcon onClick={onClickAddWord} />
     </Grid>
-      <WordDetailModal mode="default" isOpen={isOpenWord} onClose={onCloseWord} word={selectedWord} />
-      <AddWordModal isOpen={isOpenAdd} onClose={onCloseAdd} />
+      <WordDetailModal mode="default" isOpen={isOpenWord} onClose={onCloseWord} word={selectedWord} update={update} setUpdate={setUpdate} />
+      <AddWordModal isOpen={isOpenAdd} onClose={onCloseAdd} update={update} setUpdate={setUpdate} />
     </>
   );
 

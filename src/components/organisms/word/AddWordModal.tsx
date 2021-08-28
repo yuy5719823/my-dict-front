@@ -5,11 +5,13 @@ import { useAddWord } from '../../../hooks/useAddWord';
 type Props = {
   isOpen: boolean;
   onClose: () => void;
+  update: boolean;
+  setUpdate: (bool : boolean) => void;
 }
 
 export const AddWordModal: VFC<Props> = memo((props) => {
 
-  const {  isOpen, onClose } = props;
+  const { isOpen, onClose, update, setUpdate } = props;
   const { addWord } = useAddWord();
 
   const [ title, setTitle ] = useState<string>("");
@@ -17,7 +19,14 @@ export const AddWordModal: VFC<Props> = memo((props) => {
 
   const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => setTitle(event.target.value); 
   const onChangeMemo = (event: ChangeEvent<HTMLTextAreaElement>) => setMemo(event.target.value);
-  const onClickAdd = () => addWord({ title, memo });
+  const onClickAdd = () => {
+    addWord({ title, memo });
+    // 初期化
+    setTitle("");
+    setMemo("");
+    onClose();
+    setUpdate(update?false:true);
+  };
 
   return (
     <>
