@@ -34,10 +34,10 @@ export const Home: VFC = memo(() => {
       templateRows={{base: "repeat(1, 1fr)" ,md: "repeat(1, 1fr)"}}
       p={4}
     >
-      <GridItem display={{base: "none", md: "inline-grid"}} bg="papayawhip" h={{base: "0", md: "10vh"}} >
+      <GridItem display={{base: "none", md: "inline-grid"}} h={{base: "0", md: "10vh"}} >
         <Flex justifyContent="center" textAlign="center" flexDirection="column">
           <Box>
-            <Button>単語を追加</Button>
+            <Button onClick={onClickAddWord} bg="green.200" shadow="md" fontWeight="bold" _hover={{}}>単語を追加</Button>
           </Box>
         </Flex>
       </GridItem>
