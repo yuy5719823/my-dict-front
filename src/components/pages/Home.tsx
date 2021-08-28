@@ -1,5 +1,5 @@
 import { VFC, memo, useEffect, useCallback } from 'react';
-import { useDisclosure, Grid, GridItem } from '@chakra-ui/react';
+import { useDisclosure, Grid, GridItem, Box, Button, Flex } from '@chakra-ui/react';
 
 import { useWordList } from '../../hooks/useWordList';
 import { WordDetailModal } from '../organisms/word/WordDetailModal';
@@ -31,12 +31,18 @@ export const Home: VFC = memo(() => {
   return(
     <>
     <Grid
-      templateColumns={{base: "repeat(1, 1fr)" ,md: "repeat(7, 1fr)"}}
+      templateRows={{base: "repeat(1, 1fr)" ,md: "repeat(1, 1fr)"}}
+      p={4}
     >
-      <GridItem colSpan={5}>
-        <WordCardList loading={loading} wordList={wordList} onClickWord={onClickWord} />
+      <GridItem display={{base: "none", md: "inline-grid"}} bg="papayawhip" h={{base: "0", md: "10vh"}} >
+        <Flex justifyContent="center" textAlign="center" flexDirection="column">
+          <Box>
+            <Button>単語を追加</Button>
+          </Box>
+        </Flex>
       </GridItem>
-      <GridItem colSpan={2} bg="papayawhip" h={{base: 0, md: "100vh"}}>
+      <GridItem>
+        <WordCardList loading={loading} wordList={wordList} onClickWord={onClickWord} />
       </GridItem>
       <AddWordIcon onClick={onClickAddWord} />
     </Grid>
