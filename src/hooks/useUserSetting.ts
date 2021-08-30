@@ -52,10 +52,10 @@ export const useUserSetting = () => {
         }
       })
       .then( () => {
-        showMessage({title: "ユーザーを削除しました", status: "success"})
+        showMessage({title: "アカウントを削除しました", status: "success"})
         history.push("/");
       })
-      .catch(() => showMessage({title: "ユーザーの削除に失敗しました", status: "error"}))
+      .catch(() => showMessage({title: "アカウントの削除に失敗しました", status: "error"}))
   }, [showMessage,history])
 
   return { updateUserInfo, deleteUser }
