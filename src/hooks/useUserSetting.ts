@@ -22,7 +22,7 @@ export const useUserSetting = () => {
 
     const { userName, email, password, passwordConfirmation} = userInfo;
 
-    axios.put(updateUserInfoUrl,
+    axios.patch(updateUserInfoUrl,
       {name: userName, email, password, password_confirmation: passwordConfirmation},
       {
       headers: {
