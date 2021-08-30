@@ -4,8 +4,12 @@ import { useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { wordType } from '../types/api/wordType';
-import { getWordsUrl } from '../urls/index';
+import { getArchiveWordUrl, getWordsUrl } from '../urls/index';
 import { useMessage } from './useMessage';
+
+type Props = {
+  mode: "default" | "archive";
+}
 
 
 export const useWordList = () => {
@@ -16,9 +20,15 @@ export const useWordList = () => {
   const [ loading, setLoading ] = useState<boolean>(false);
   const [ wordList, setWordList ] = useState<Array<wordType>>([]);
 
-  const fetchWordList = useCallback(() => {
+  const fetchWordList = useCallback((props: Props) => {
+
+    //modeによって取得するデータを変更
+    const { mode } = props;
+    let wordUrl: string = "";
+    mode === "default" ? wordUrl = getWordsUrl : wordUrl = getArchiveWordUrl;
+
     setLoading(true);
-    axios.get<Array<wordType>>(getWordsUrl, {
+    axios.get<Array<wordType>>(wordUrl, {
       headers: {
         "access-token": Cookies.get("accessToken"),
         client: Cookies.get("client"),

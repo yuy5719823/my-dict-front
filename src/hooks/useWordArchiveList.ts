@@ -1,3 +1,5 @@
+//useWordList.tsx に統合済
+
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useState, useCallback } from 'react';
