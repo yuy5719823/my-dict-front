@@ -30,12 +30,12 @@ export const WordDetailModal: VFC<Props> = memo( (props) => {
   const onChangeArchive = (event: ChangeEvent<HTMLInputElement>) => setArchive(!archive);
   const onClickUpdate = () => {
     updateWord({id: word!.id , wordData: {word: title, memo: memo, archive: archive}});
-    setUpdate(update?false:true);
+    setUpdate(!update);
     onClose();
   }
   const onClickDelete = () => {
     deleteWord(word!.id);
-    setUpdate(update?false:true);
+    setUpdate(!update);
     onClose();
   }
 

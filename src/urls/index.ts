@@ -1,5 +1,5 @@
-// const BASE_URL = "http://localhost:3000";
-const BASE_URL = "https://my-dict-app.herokuapp.com";
+const BASE_URL = "http://localhost:3000";
+// const BASE_URL = "https://my-dict-app.herokuapp.com";
 
 export const signInUrl = `${BASE_URL}/api/auth/sign_in`;
 export const signOutUrl = `${BASE_URL}/api/auth/sign_out`;

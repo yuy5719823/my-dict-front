@@ -1,18 +1,36 @@
-import { VFC, memo } from 'react';
-import { Center, Spinner, Wrap, WrapItem, Box } from '@chakra-ui/react';
+import { VFC, memo, useEffect, useCallback, useState } from 'react';
+import { Center, Spinner, Wrap, WrapItem, Box, useDisclosure } from '@chakra-ui/react';
 
 import { WordCard } from '../organisms/word/WordCard';
-import { wordType } from '../../types/api/wordType';
+import { useWordList } from '../../hooks/useWordList';
+import { WordDetailModal } from '../organisms/word/WordDetailModal';
+import { useSetWord } from '../../hooks/useSelectWord';
+import { AddWordModal } from '../organisms/word/AddWordModal';
 
 type Props = {
-  loading: boolean;
-  wordList: Array<wordType>;
-  onClickWord: (id:number) => void;
+  isOpenAdd?: boolean;
+  onCloseAdd?: () => void;
+  mode: "default" | "archive";
 }
 
 export const WordCardList:VFC<Props> = memo((props) => {
 
-  const { loading, wordList, onClickWord } = props;
+  const { isOpenAdd, onCloseAdd, mode } = props;
+
+  const { fetchWordList, loading, wordList } = useWordList();
+  const { isOpen: isOpenWord, onOpen: onOpenWord, onClose: onCloseWord } = useDisclosure();
+  const { setWord, selectedWord } = useSetWord();
+
+  const onClickWord = useCallback( (id: number) => {
+    setWord({id, wordList})
+    onOpenWord();
+  }, [wordList, onOpenWord, setWord])
+
+  // 強制的に再レンダリング
+  const [ update, setUpdate ] = useState<boolean>(false);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect( () => fetchWordList({mode}) ,[update] );
 
   return(
     <>
@@ -39,6 +57,8 @@ export const WordCardList:VFC<Props> = memo((props) => {
           ) }
         </Wrap>
       )}
+      <WordDetailModal mode={mode} isOpen={isOpenWord} onClose={onCloseWord} word={selectedWord} update={update} setUpdate={setUpdate} />
+      <AddWordModal isOpen={isOpenAdd ?? false} onClose={onCloseAdd ?? (() => {}) } update={update} setUpdate={setUpdate} />
     </>
   );
 })

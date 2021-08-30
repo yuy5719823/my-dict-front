@@ -25,7 +25,7 @@ export const AddWordModal: VFC<Props> = memo((props) => {
     setTitle("");
     setMemo("");
     onClose();
-    setUpdate(update?false:true);
+    setUpdate(!update);
   };
 
   return (
