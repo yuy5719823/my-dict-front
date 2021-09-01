@@ -1,6 +1,7 @@
 import { VFC, memo, useState, ChangeEvent } from 'react';
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, Stack, FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
 import { useSignUp } from '../../../hooks/useSignUp';
+import { UserSettingForm } from './UserSettingForm';
 
 type Props = {
   isOpen: boolean;
@@ -34,25 +35,7 @@ export const SignUpModal: VFC<Props> = memo( (props) => {
         <ModalHeader as="h2" fontWeight="medium" textAlign="center">アカウントの作成</ModalHeader>
         <ModalCloseButton _hover={{opacity: "none"}} />
         <ModalBody pt={6} flexDirection="column">
-          <Stack spacing={4}>
-            <FormControl>
-              <FormLabel>ユーザーネーム</FormLabel>
-              <Input value={userName} onChange={onChangeUserName} placeholder="ユーザーネーム" />
-            </FormControl>
-            <FormControl id="email">
-              <FormLabel>メールアドレス</FormLabel>
-              <Input value={email} onChange={onChangeEmail} type="email" placeholder="sample@example.com" />
-            </FormControl>
-            <FormControl id="password">
-              <FormLabel>パスワード</FormLabel>
-              <Input value={password} onChange={onChangePassword} type="password" placeholder="パスワード" />
-            </FormControl>
-            <FormControl id="password-confirmation">
-              <FormLabel>パスワード(確認)</FormLabel>
-              <Input value={passwordConfirmation} onChange={onChangePasswordConfirmation} type="password" placeholder="パスワード(確認)" />
-            </FormControl>
-            <Button backgroundColor="blue.300" color="white" w="100%" onClick={onClickSignUp}>新規登録</Button>
-          </Stack>
+          <UserSettingForm userName={userName} onChangeUserName={onChangeUserName} email={email} onChangeEmail={onChangeEmail} password={password} onChangePassword={onChangePassword} passwordConfirmation={passwordConfirmation} onChangePasswordConfirmation={onChangePasswordConfirmation} onClick={onClickSignUp} buttonColor={"blue.300"} />
         </ModalBody>
       </ModalContent>
     </Modal>
