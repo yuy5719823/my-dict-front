@@ -1,12 +1,12 @@
 import { VFC, memo, useEffect, useCallback, useState } from 'react';
-import { Center, Spinner, Wrap, WrapItem, Box, useDisclosure, Button, Flex } from '@chakra-ui/react';
+import { Center, Spinner, Wrap, WrapItem, Box, useDisclosure } from '@chakra-ui/react';
 
 import { WordCard } from '../organisms/word/WordCard';
 import { useWordList } from '../../hooks/useWordList';
 import { WordDetailModal } from '../organisms/word/WordDetailModal';
 import { useSetWord } from '../../hooks/useSelectWord';
 import { AddWordModal } from '../organisms/word/AddWordModal';
-import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
+import { SortFunction } from '../organisms/SortFunction';
 
 type Props = {
   isOpenAdd?: boolean;
@@ -33,33 +33,9 @@ export const WordCardList:VFC<Props> = memo((props) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect( () => fetchWordList({mode}) ,[update] );
 
+  //ソート機能
   let sortedWordList = wordList;
   const [ sort, setSort ] = useState<string>("");
-  const [ sortSwitchName, setSortSwitchName ] = useState<boolean>(false);
-  const [ sortSwitchCreate, setSortSwitchCreate ] = useState<boolean>(true);
-
-  const onClickSortName = () => {
-    if(sortSwitchName){
-      setSort("name");
-    }else{
-      setSort("nameDesc");
-    }
-    setSortSwitchName(!sortSwitchName);
-    if(sortSwitchCreate){
-      setSortSwitchCreate(false);
-    };
-  };
-  const onClickSortCreate = () => {
-    if(sortSwitchCreate){
-      setSort("createdAtDesc")
-    }else{
-      setSort("createdAt");
-    }
-    setSortSwitchCreate(!sortSwitchCreate);
-    if(sortSwitchName){
-      setSortSwitchName(false);
-    }
-  };
 
   switch(sort){
     case "createdAt":
@@ -84,10 +60,7 @@ export const WordCardList:VFC<Props> = memo((props) => {
         </Center>
       ) : (
         <Wrap p={{base: 4, md: 8 }} justify="center" direction="column" spacing="30px" >
-          <Flex justifyContent="center" >
-            <Button as="a" _hover={{cursor:"pointer"}} onClick={onClickSortName}>名前順{sortSwitchName? <ChevronUpIcon/> : <ChevronDownIcon/>}</Button>
-            <Button as="a" _hover={{cursor:"pointer"}} onClick={onClickSortCreate}>作成順{sortSwitchCreate? <ChevronUpIcon/> : <ChevronDownIcon/>}</Button>
-          </Flex>
+          <SortFunction setSort={setSort} />
           {wordList.length === 0 ? (
             <WrapItem  h="90vh">
               <Box m="auto">
