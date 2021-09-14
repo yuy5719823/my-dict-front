@@ -1,9 +1,10 @@
-import { Box, Heading, Flex, Button } from '@chakra-ui/react';
+import { Box, Heading, Flex } from '@chakra-ui/react';
 import { VFC, memo, useEffect, useState, ChangeEvent } from 'react';
 
 import Cookies from 'js-cookie';
 import { useUserSetting } from '../../hooks/useUserSetting';
 import { UserSettingForm } from '../organisms/user/UserSettingForm';
+import { DeleteAccountFunction } from '../molecules/DeleteAccountFunction';
 
 export const User: VFC = memo(() => {
 
@@ -21,7 +22,6 @@ export const User: VFC = memo(() => {
 
   const onClickUpdate = () => updateUserInfo({userName, email, password, passwordConfirmation});
   
-
   useEffect( () => {
     const uname = Cookies.get("uname");
     const uemail = Cookies.get("uid");
@@ -36,10 +36,8 @@ export const User: VFC = memo(() => {
         <Heading as="h2" textAlign="center" fontSize="x-large" fontWeight="light" >ユーザー情報</Heading>
         <UserSettingForm userName={userName} onChangeUserName={onChangeUserName} email={email} onChangeEmail={onChangeEmail} password={password} onChangePassword={onChangePassword} passwordConfirmation={passwordConfirmation} onChangePasswordConfirmation={onChangePasswordConfirmation} onClick={onClickUpdate} disabled={true} buttonTitle="更新する" />
       </Box>
-      <Box py={8}>
-        <Button fontSize="sm" color="gray.500" borderBottom="solid 2px white" _hover={{ backgroundColor: "gray.50" }} p={1} borderRadius={8} onClick={deleteUser}>
-          アカウントの削除
-        </Button>
+      <Box py={8}> 
+        <DeleteAccountFunction deleteUser={deleteUser} isTestUser={email === "test0@example.com"} />
       </Box>
     </Flex>
   );
