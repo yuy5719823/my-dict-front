@@ -31,7 +31,7 @@ export const UserSettingForm:VFC<Props> = memo((props) => {
       </FormControl>
       <FormControl>
         <FormLabel>メールアドレス</FormLabel>
-        <Input value={email} placeholder="メールアドレス" onChange={onChangeEmail} disabled={disabled}/>
+        <Input value={email} placeholder="メールアドレス" onChange={onChangeEmail} disabled={disabled} />
       </FormControl>
       <FormControl>
         <FormLabel id="password">パスワード</FormLabel>
@@ -41,7 +41,7 @@ export const UserSettingForm:VFC<Props> = memo((props) => {
         <FormLabel id="password-confirmation">パスワード(確認)</FormLabel>
         <PasswordInputConfirm setPlaceholder="パスワード(確認)" setInput={passwordConfirmation} onChange={onChangePasswordConfirmation}/>
       </FormControl>
-      <PrimaryButton onClick={onClick} loading={false} buttonColor={buttonColor}>{buttonTitle}</PrimaryButton>
+      <PrimaryButton onClick={onClick} loading={false} buttonColor={buttonColor} disabled={email === "test0@example.com"}>{buttonTitle}</PrimaryButton>
     </Stack>
   </Box>
   );
