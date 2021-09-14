@@ -34,7 +34,7 @@ export const User: VFC = memo(() => {
     <Flex height={{base: "40em" ,md:"90vh"}} align="center" flexDirection="column" justify="center">
       <Box bg="white" w={{base:"auto",sm: "md", md: "xl"}} textAlign="center" p={{base: 8, md: 6}} borderRadius={8} >
         <Heading as="h2" textAlign="center" fontSize="x-large" fontWeight="light" >ユーザー情報</Heading>
-        <UserSettingForm userName={userName} onChangeUserName={onChangeUserName} email={email} onChangeEmail={onChangeEmail} password={password} onChangePassword={onChangePassword} passwordConfirmation={passwordConfirmation} onChangePasswordConfirmation={onChangePasswordConfirmation} onClick={onClickUpdate} disabled={true} />
+        <UserSettingForm userName={userName} onChangeUserName={onChangeUserName} email={email} onChangeEmail={onChangeEmail} password={password} onChangePassword={onChangePassword} passwordConfirmation={passwordConfirmation} onChangePasswordConfirmation={onChangePasswordConfirmation} onClick={onClickUpdate} disabled={true} buttonTitle="更新する" />
       </Box>
       <Box py={8}>
         <Button fontSize="sm" color="gray.500" borderBottom="solid 2px white" _hover={{ backgroundColor: "gray.50" }} p={1} borderRadius={8} onClick={deleteUser}>

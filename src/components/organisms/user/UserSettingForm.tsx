@@ -15,11 +15,12 @@ type Props = {
   onClick: () => void;
   buttonColor?: string;
   disabled?: boolean
+  buttonTitle: string;
 }
 
 export const UserSettingForm:VFC<Props> = memo((props) => {
 
-  const { userName, onChangeUserName, email, onChangeEmail, password, onChangePassword, passwordConfirmation, onChangePasswordConfirmation, onClick, buttonColor, disabled=false} = props;
+  const { userName, onChangeUserName, email, onChangeEmail, password, onChangePassword, passwordConfirmation, onChangePasswordConfirmation, onClick, buttonColor, disabled=false, buttonTitle} = props;
 
   return(
     <Box>
@@ -40,7 +41,7 @@ export const UserSettingForm:VFC<Props> = memo((props) => {
         <FormLabel id="password-confirmation">パスワード(確認)</FormLabel>
         <PasswordInputConfirm setPlaceholder="パスワード(確認)" setInput={passwordConfirmation} onChange={onChangePasswordConfirmation}/>
       </FormControl>
-      <PrimaryButton onClick={onClick} loading={false} buttonColor={buttonColor}>更新</PrimaryButton>
+      <PrimaryButton onClick={onClick} loading={false} buttonColor={buttonColor}>{buttonTitle}</PrimaryButton>
     </Stack>
   </Box>
   );

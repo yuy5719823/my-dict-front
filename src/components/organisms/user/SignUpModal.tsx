@@ -35,7 +35,7 @@ export const SignUpModal: VFC<Props> = memo( (props) => {
         <ModalHeader as="h2" fontWeight="medium" textAlign="center">アカウントの作成</ModalHeader>
         <ModalCloseButton _hover={{opacity: "none"}} />
         <ModalBody pt={6} flexDirection="column">
-          <UserSettingForm userName={userName} onChangeUserName={onChangeUserName} email={email} onChangeEmail={onChangeEmail} password={password} onChangePassword={onChangePassword} passwordConfirmation={passwordConfirmation} onChangePasswordConfirmation={onChangePasswordConfirmation} onClick={onClickSignUp} buttonColor={"blue.300"} />
+          <UserSettingForm userName={userName} onChangeUserName={onChangeUserName} email={email} onChangeEmail={onChangeEmail} password={password} onChangePassword={onChangePassword} passwordConfirmation={passwordConfirmation} onChangePasswordConfirmation={onChangePasswordConfirmation} onClick={onClickSignUp} buttonColor={"blue.300"} buttonTitle="登録する"/>
         </ModalBody>
       </ModalContent>
     </Modal>
