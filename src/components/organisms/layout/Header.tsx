@@ -1,15 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { VFC, memo, useCallback } from 'react';
+import { VFC, memo, useCallback, useEffect } from 'react';
 import { Flex, Heading, Link, Box, useDisclosure } from '@chakra-ui/react';
 import { useHistory } from 'react-router';
 import Cookies from 'js-cookie';
+import { useRecoilState } from 'recoil';
 
 import { MenuIconButoon } from '../../atoms/button/MenuIconButton';
 import { MenuDrawer } from '../../molecules/MenuDrawer';
 import { useLogout } from '../../../hooks/useLogout';
+import { userState } from '../../../store/userState';
 
 
 export const Header: VFC = memo( () => {
+
+  const [ userInfo, setUserInfo ] = useRecoilState(userState);
 
   const history = useHistory();
   const { isOpen, onOpen, onClose} = useDisclosure();
@@ -29,10 +33,15 @@ export const Header: VFC = memo( () => {
     history.push("/")
   }, []);
 
+  useEffect( () => {
+    const uname : string = Cookies.get("uname") ?? "ユーザー";
+    setUserInfo( uname );
+  },[])
+
   return(
     <>
       <Flex as="nav" bg="teal.500" color="gray.50" align="center" justify="space-between" padding={{ base: 2, md: 4 }}>
-        <Link to="/user" fontSize={{base: "sm", md: "md"}} onClick={onClickUserInfo}>{Cookies.get("uname")}</Link>
+        <Link to="/user" fontSize={{base: "sm", md: "md"}} onClick={onClickUserInfo}>{userInfo}</Link>
         <Flex as="a" _hover={{cursor: "pointer"}}　onClick={onClickHome}>
           <Heading as="h1" fontWeight="200">MyDictionary</Heading>
         </Flex>

@@ -1,13 +1,17 @@
 import { Box, Heading, Flex } from '@chakra-ui/react';
 import { VFC, memo, useEffect, useState, ChangeEvent } from 'react';
-
 import Cookies from 'js-cookie';
+import { useSetRecoilState } from 'recoil';
+
+
 import { useUserSetting } from '../../hooks/useUserSetting';
 import { UserSettingForm } from '../organisms/user/UserSettingForm';
 import { DeleteAccountFunction } from '../molecules/DeleteAccountFunction';
+import { userState } from '../../store/userState';
 
 export const User: VFC = memo(() => {
 
+  const setUserInfo = useSetRecoilState(userState);
   const { updateUserInfo, deleteUser } = useUserSetting();
 
   const [ userName, setUserName ] = useState<string>("");
@@ -20,7 +24,10 @@ export const User: VFC = memo(() => {
   const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
   const onChangePasswordConfirmation = (e: ChangeEvent<HTMLInputElement>) => setPasswordConfirmation(e.target.value);
 
-  const onClickUpdate = () => updateUserInfo({userName, email, password, passwordConfirmation});
+  const onClickUpdate = () => {
+    updateUserInfo({userName, email, password, passwordConfirmation});
+    setUserInfo( Cookies.get("uname")! );
+  };
   
   useEffect( () => {
     const uname = Cookies.get("uname");
