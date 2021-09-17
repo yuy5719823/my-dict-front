@@ -16,7 +16,7 @@ export const PasswordInputConfirm: VFC<Props> = memo((props) => {
 
   return(
     <InputGroup>
-      <Input type={show? "text" : "password" } value={setInput} placeholder={setPlaceholder}  onChange={onChange} />
+      <Input type={show? "text" : "password" } value={setInput} placeholder={setPlaceholder}  onChange={onChange} autoComplete="password"/>
       <InputRightElement width="4.5rem">
         <Button h="1.75rem" size="sm" onClick={handleClick}>
           {show? "Hide" : "Show"}
