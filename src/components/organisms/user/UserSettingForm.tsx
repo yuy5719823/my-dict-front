@@ -27,11 +27,11 @@ export const UserSettingForm:VFC<Props> = memo((props) => {
     <Stack py={2}>
       <FormControl>
         <FormLabel>ユーザーネーム</FormLabel>
-        <Input value={userName} placeholder="ユーザーネーム" onChange={onChangeUserName}  autoComplete="name"/>
+        <Input value={userName} placeholder="ユーザーネーム" onChange={onChangeUserName}  autoComplete="off"/>
       </FormControl>
       <FormControl>
         <FormLabel>メールアドレス</FormLabel>
-        <Input value={email} placeholder="メールアドレス" onChange={onChangeEmail} disabled={disabled} autoComplete="email" />
+        <Input value={email} placeholder="メールアドレス" onChange={onChangeEmail} disabled={disabled} autoComplete="off" />
       </FormControl>
       <FormControl>
         <FormLabel id="password">パスワード</FormLabel>
