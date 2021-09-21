@@ -5,6 +5,7 @@ import { PrimaryButton } from '../atoms/button/PrimaryButton';
 import { useAuth } from '../../hooks/useAuth';
 import { userInfoType } from '../../types/api/userInfoType';
 import { SignUpModal } from '../organisms/user/SignUpModal';
+import { PasswordInputConfirm } from '../atoms/password/PasswordInputConfirm';
 
 
 export const Login: VFC = memo(() => {
@@ -14,11 +15,15 @@ export const Login: VFC = memo(() => {
 
   //ログイン関連
   const { login, loading } = useAuth();
-  const [userInfo, setUserInfo] = useState<userInfoType>({ email: "test0@example.com", password: "password" });
+  const [userInfo, setUserInfo] = useState<userInfoType>({ email: "", password: "" });
 
   const onClickLogin = () => login(userInfo);
   const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => setUserInfo({...userInfo, email: event.target.value});
   const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => setUserInfo({...userInfo, password: event.target.value});
+
+  const onClickLoginGest = () => {
+    setUserInfo({ email: "test@example.com", password: "password" });
+  }
 
   return(
     <>
@@ -28,8 +33,9 @@ export const Login: VFC = memo(() => {
           <Divider　my={2} />
           <Stack spacing={4} py={3} px={8} >
             <Input value={userInfo.email} onChange={onChangeEmail} type="email" placeholder="メールアドレスを入力" />
-            <Input value={userInfo.password} onChange={onChangePassword} type="password" placeholder="パスワードを入力" />
+            <PasswordInputConfirm setPlaceholder="パスワードを入力" onChange={onChangePassword} setInput={userInfo.password} />
             <PrimaryButton onClick={onClickLogin} loading={loading}>ログイン</PrimaryButton>
+            <Button onClick={onClickLoginGest}>ゲストユーザーでログイン</Button>
           </Stack>
         </Box>
       <Box py={8}>
