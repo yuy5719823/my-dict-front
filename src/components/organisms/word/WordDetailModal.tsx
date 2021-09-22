@@ -28,16 +28,25 @@ export const WordDetailModal: VFC<Props> = memo( (props) => {
   const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => setTitle(event.target.value);
   const onChangeMemo = (event: ChangeEvent<HTMLTextAreaElement>) => setMemo(event.target.value);
   const onChangeArchive = (event: ChangeEvent<HTMLInputElement>) => setArchive(!archive);
-  const onClickUpdate = () => {
+  const onClickUpdate = async() => {
     updateWord({id: word!.id , wordData: {word: title, memo: memo, archive: archive}});
-    setUpdate(!update);
+    await wordListUpdate();
     onClose();
   }
-  const onClickDelete = () => {
+  const onClickDelete = async() => {
     deleteWord(word!.id);
-    setUpdate(!update);
+    await wordListUpdate()
     onClose();
   }
+
+  const wordListUpdate = () => {
+    return new Promise<void>( (resolve) => {
+      setTimeout( () => {
+        setUpdate(!update);
+        resolve();
+      }, 200)
+    } )
+  } 
 
   useEffect(() => {
     setTitle(word?.word ?? "");

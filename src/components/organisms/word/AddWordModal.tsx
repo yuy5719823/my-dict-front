@@ -19,14 +19,24 @@ export const AddWordModal: VFC<Props> = memo((props) => {
 
   const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => setTitle(event.target.value); 
   const onChangeMemo = (event: ChangeEvent<HTMLTextAreaElement>) => setMemo(event.target.value);
-  const onClickAdd = () => {
+  const onClickAdd = async() => {
     addWord({ title, memo });
     // 初期化
     setTitle("");
     setMemo("");
     onClose();
-    setUpdate(!update);
+    await wordListUpdate();
   };
+
+  const wordListUpdate = () => {
+    return new Promise<void>( (resolve) => {
+      setTimeout( () => {
+        setUpdate(!update);
+        resolve();
+      }, 200)
+    } )
+  } 
+
 
   return (
     <>
