@@ -35,7 +35,7 @@ export const Login: VFC = memo(() => {
             <Input value={userInfo.email} onChange={onChangeEmail} type="email" placeholder="メールアドレスを入力" />
             <PasswordInputConfirm setPlaceholder="パスワードを入力" onChange={onChangePassword} setInput={userInfo.password} />
             <PrimaryButton onClick={onClickLogin} loading={loading}>ログイン</PrimaryButton>
-            <Button onClick={onClickLoginGest}>ゲストユーザーでログイン</Button>
+            <Button onClick={onClickLoginGest} fontSize="sm" fontWeight="semibold">ゲストユーザーでログイン</Button>
           </Stack>
         </Box>
       <Box py={8}>
