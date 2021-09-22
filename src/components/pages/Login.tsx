@@ -22,7 +22,7 @@ export const Login: VFC = memo(() => {
   const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => setUserInfo({...userInfo, password: event.target.value});
 
   const onClickLoginGest = () => {
-    setUserInfo({ email: "test@example.com", password: "password" });
+    setUserInfo({ email: "guest@example.com", password: "password" });
   }
 
   return(

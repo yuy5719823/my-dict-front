@@ -44,7 +44,7 @@ export const User: VFC = memo(() => {
         <UserSettingForm userName={userName} onChangeUserName={onChangeUserName} email={email} onChangeEmail={onChangeEmail} password={password} onChangePassword={onChangePassword} passwordConfirmation={passwordConfirmation} onChangePasswordConfirmation={onChangePasswordConfirmation} onClick={onClickUpdate} disabled={true} buttonTitle="更新する" />
       </Box>
       <Box py={8}> 
-        <DeleteAccountFunction deleteUser={deleteUser} isTestUser={email === "test0@example.com"} />
+        <DeleteAccountFunction deleteUser={deleteUser} isTestUser={email === "guest@example.com"} />
       </Box>
     </Flex>
   );
