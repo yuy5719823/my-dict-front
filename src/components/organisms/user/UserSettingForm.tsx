@@ -45,7 +45,7 @@ export const UserSettingForm:VFC<Props> = memo((props) => {
         <PasswordInputConfirm setPlaceholder="パスワード(確認)" setInput={passwordConfirmation} onChange={onChangePasswordConfirmation}/>
         </form>
       </FormControl>
-      <PrimaryButton onClick={onClick} loading={false} buttonColor={buttonColor} disabled={email === "test0@example.com"}>{buttonTitle}</PrimaryButton>
+      <PrimaryButton onClick={onClick} loading={false} buttonColor={buttonColor} disabled={email === "test@example.com"}>{buttonTitle}</PrimaryButton>
     </Stack>
   </Box>
   );
