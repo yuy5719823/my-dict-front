@@ -49,7 +49,7 @@ export const Header: VFC = memo( () => {
           <Box pr={3}>
             <Link onClick={onClickArchive}>アーカイブ</Link>
           </Box>
-          <Link onClick={onClickSignOut}>サインアウト</Link>
+          <Link onClick={onClickSignOut}>ログアウト</Link>
         </Flex>
         <MenuIconButoon onOpen={onOpen} />
       </Flex>
